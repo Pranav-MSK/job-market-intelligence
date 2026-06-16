@@ -9,3 +9,6 @@ logs/
 
 .vscode/
 .idea/
+
+*.log
+file.txt
