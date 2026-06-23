@@ -4,7 +4,8 @@ def run_quality_checks(df):
         "duplicate_job_ids": df["source_job_id"].duplicated().sum(),
         "missing_titles": df["title"].isna().sum(),
         "missing_companies": df["company"].isna().sum(),
-        "missing_locations": df["location"].isna().sum(),
+        "missing_cities": df["city"].isna().sum(),
+        "missing_states": df["state"].isna().sum(),
     }
 
     print("\n--- Data Quality Report ---")

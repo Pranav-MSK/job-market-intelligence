@@ -27,11 +27,12 @@ def main():
 
     df = clean_jobs(data)
 
-    print("\nData Preview:")
-    print(df.head())
+    print(f"Rows processed: {len(df)}")
 
-    print("\nData Info:")
-    print(df.info())
+    print(
+        f"Columns: "
+        f"{', '.join(df.columns)}"
+    )
 
     processed_path = save_processed(df)
 

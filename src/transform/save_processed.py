@@ -1,13 +1,25 @@
 from pathlib import Path
+from datetime import datetime
 
 
 def save_processed(df):
-    Path("data/processed").mkdir(
+
+    Path(
+        "data/processed"
+    ).mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    filename = "data/processed/jobs_clean.csv"
+    timestamp = (
+        datetime.now()
+        .strftime("%Y%m%d_%H%M%S")
+    )
+
+    filename = (
+        f"data/processed/"
+        f"jobs_clean_{timestamp}.csv"
+    )
 
     df.to_csv(
         filename,
