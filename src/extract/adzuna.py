@@ -26,7 +26,14 @@ def fetch_jobs(
         f"&results_per_page={results_per_page}"
     )
 
-    response = requests.get(url, timeout=30)
+    response = requests.get(url, timeout=30,)
+
+    if response.status_code != 200:
+        print(
+            f"API Error: "
+            f"{response.status_code}"
+        )
+        print(response.text)
 
     response.raise_for_status()
 
