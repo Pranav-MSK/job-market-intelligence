@@ -2,8 +2,11 @@ import logging
 
 from src.extract.adzuna import fetch_jobs
 from src.extract.save_raw import save_raw
+
 from src.transform.clean_jobs import clean_jobs
 from src.transform.save_processed import save_processed
+
+from src.quality.checks import run_quality_checks
 
 
 logging.basicConfig(
@@ -31,6 +34,8 @@ def main():
     print(df.info())
 
     processed_path = save_processed(df)
+
+    run_quality_checks(df)
 
     print(
         f"\nProcessed file saved: "
