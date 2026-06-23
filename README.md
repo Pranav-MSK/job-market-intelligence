@@ -321,12 +321,11 @@ Phase 1: Data Extraction
 ```
 
 Roadmap:
-
-```text
+```
 [x] Project Setup
 [x] API Integration
 [x] Raw Data Storage
-[ ] Data Transformation
+[x] Data Transformation
 [ ] Database Loading
 [ ] Data Quality Framework
 [ ] Automation
