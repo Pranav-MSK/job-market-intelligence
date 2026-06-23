@@ -2,6 +2,7 @@ import logging
 
 from src.extract.adzuna import fetch_jobs
 from src.extract.save_raw import save_raw
+from src.transform.clean_jobs import clean_jobs
 
 
 logging.basicConfig(
@@ -12,17 +13,21 @@ logging.basicConfig(
 
 
 def main():
-    logging.info(
-        "Pipeline started"
-    )
+    logging.info("Pipeline started")
 
     data = fetch_jobs()
 
     raw_path = save_raw(data)
 
-    print(
-        f"Saved to {raw_path}"
-    )
+    print(f"Saved raw file: {raw_path}")
+
+    df = clean_jobs(data)
+
+    print("\nData Preview:")
+    print(df.head())
+
+    print("\nData Info:")
+    print(df.info())
 
     logging.info(
         f"Fetched {len(data['results'])} jobs"
@@ -32,9 +37,7 @@ def main():
         f"Raw data saved to {raw_path}"
     )
 
-    logging.info(
-        "Pipeline completed"
-    )
+    logging.info("Pipeline completed")
 
 
 if __name__ == "__main__":
