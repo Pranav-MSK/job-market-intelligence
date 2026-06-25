@@ -148,14 +148,13 @@ def get_top_states():
     WHERE state IS NOT NULL
     GROUP BY state
     ORDER BY total_jobs DESC
-    LIMIT 10
     """
 
     engine = get_engine()
 
     return pd.read_sql(query, engine)
 
-def get_companies_by_city():
+def get_company_city_data():
     query = """
     SELECT
         city,
@@ -164,8 +163,7 @@ def get_companies_by_city():
     FROM jobs
     WHERE city IS NOT NULL
     GROUP BY city, company
-    ORDER BY total_jobs DESC
-    LIMIT 25
+    ORDER BY city, total_jobs DESC
     """
 
     engine = get_engine()
