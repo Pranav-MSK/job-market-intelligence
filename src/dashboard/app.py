@@ -12,6 +12,9 @@ from src.dashboard.data_loader import (
     get_average_jobs_per_day,
     get_recent_jobs,
     get_data_quality_metrics,
+    get_top_states,
+    get_companies_by_city,
+    get_company_posting_trend,
 )
 
 st.set_page_config(
@@ -53,6 +56,9 @@ jobs_by_day = get_jobs_by_day()
 recent_jobs = get_recent_jobs()
 quality = get_data_quality_metrics()
 avg_jobs = get_average_jobs_per_day()
+states = get_top_states()
+companies_by_city = get_companies_by_city()
+company_trend = get_company_posting_trend()
 
 # --------------------------------------------------
 # KPI Row
@@ -150,6 +156,37 @@ with col7:
         }
     )
 
+col8, col9 = st.columns(2)
+
+with col8:
+    st.subheader("Top Hiring States")
+
+    fig = px.bar(
+        states.sort_values(
+            "total_jobs",
+            ascending=True
+        ),
+        x="total_jobs",
+        y="state",
+        orientation="h"
+    )
+
+    st.plotly_chart(
+        fig,
+        width="stretch",
+        config={
+            "displayModeBar": False
+        }
+    )
+
+with col9:
+    st.subheader("Companies Hiring By City")
+
+    st.dataframe(
+        companies_by_city,
+        width="stretch"
+    )
+
 # --------------------------------------------------
 # Hiring Trend
 # --------------------------------------------------
@@ -165,6 +202,25 @@ fig = px.line(
 
 fig.update_layout(
     height=500
+)
+
+st.plotly_chart(
+    fig,
+    width="stretch",
+    config={
+        "displayModeBar": False
+    }
+)
+
+st.subheader(
+    "Company Hiring Trends"
+)
+
+fig = px.line(
+    company_trend,
+    x="posting_date",
+    y="total_jobs",
+    color="company"
 )
 
 st.plotly_chart(

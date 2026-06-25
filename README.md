@@ -364,22 +364,22 @@ data/processed/jobs_clean_20260623_183940.csv
 ### Phase 3 — Data Storage
 
 * [x] MySQL database design
-* [ ] Database loading layer
-* [ ] Incremental loading
-* [ ] Duplicate-safe inserts
+* [x] Database loading layer
+* [x] Incremental loading
+* [x] Duplicate-safe inserts
 
 ### Phase 4 — Analytics
 
-* [ ] SQL analytics queries
-* [ ] KPI generation
-* [ ] Hiring trend analysis
-* [ ] Skill demand analysis
+* [x] SQL analytics queries
+* [x] KPI generation
+* [x] Hiring trend analysis
+* [x] Skill demand analysis
 
 ### Phase 5 — Visualization
 
-* [ ] Streamlit dashboard
-* [ ] Interactive charts
-* [ ] Hiring trend monitoring
+* [x] Streamlit dashboard
+* [x] Interactive charts
+* [x] Hiring trend monitoring
 
 ### Phase 6 — Automation
 
@@ -414,31 +414,6 @@ The objective is to demonstrate practical skills in:
 
 ---
 
-<<<<<<< HEAD
-=======
-## Project Status
-
-Current Phase:
-
-```text
-Phase 1: Data Extraction
-```
-
-Roadmap:
-```
-[x] Project Setup
-[x] API Integration
-[x] Raw Data Storage
-[x] Data Transformation
-[ ] Database Loading
-[ ] Data Quality Framework
-[ ] Automation
-[ ] Dashboard Development
-```
-
----
-
->>>>>>> c46aa9271ce3a8f8d0cfb4a3ca77489990520bad
 ## License
 
 This project is intended for educational and portfolio purposes.

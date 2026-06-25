@@ -138,3 +138,51 @@ def get_data_quality_metrics():
     engine = get_engine()
 
     return pd.read_sql(query, engine)
+
+def get_top_states():
+    query = """
+    SELECT
+        state,
+        COUNT(*) AS total_jobs
+    FROM jobs
+    WHERE state IS NOT NULL
+    GROUP BY state
+    ORDER BY total_jobs DESC
+    LIMIT 10
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query, engine)
+
+def get_companies_by_city():
+    query = """
+    SELECT
+        city,
+        company,
+        COUNT(*) AS total_jobs
+    FROM jobs
+    WHERE city IS NOT NULL
+    GROUP BY city, company
+    ORDER BY total_jobs DESC
+    LIMIT 25
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query, engine)
+
+def get_company_posting_trend():
+    query = """
+    SELECT
+        DATE(created_at) AS posting_date,
+        company,
+        COUNT(*) AS total_jobs
+    FROM jobs
+    GROUP BY posting_date, company
+    ORDER BY posting_date
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query, engine)
