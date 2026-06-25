@@ -8,6 +8,8 @@ from src.transform.save_processed import save_processed
 
 from src.quality.checks import run_quality_checks
 
+from src.load.load_jobs import load_jobs
+
 
 logging.basicConfig(
     filename="logs/pipeline.log",
@@ -34,9 +36,11 @@ def main():
         f"{', '.join(df.columns)}"
     )
 
+    run_quality_checks(df)
+
     processed_path = save_processed(df)
 
-    run_quality_checks(df)
+    load_jobs(df)
 
     print(
         f"\nProcessed file saved: "
