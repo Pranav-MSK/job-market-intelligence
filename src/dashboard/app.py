@@ -13,7 +13,7 @@ from src.dashboard.data_loader import (
     get_recent_jobs,
     get_data_quality_metrics,
     get_top_states,
-    get_companies_by_city,
+    get_company_city_data,
     get_company_posting_trend,
 )
 
@@ -57,7 +57,7 @@ recent_jobs = get_recent_jobs()
 quality = get_data_quality_metrics()
 avg_jobs = get_average_jobs_per_day()
 states = get_top_states()
-companies_by_city = get_companies_by_city()
+company_city = get_company_city_data()
 company_trend = get_company_posting_trend()
 
 # --------------------------------------------------
@@ -180,10 +180,17 @@ with col8:
     )
 
 with col9:
-    st.subheader("Companies Hiring By City")
+    selected_city = st.selectbox(
+        "Select City",
+        sorted(company_city["city"].unique())
+    )
+
+    filtered = company_city[
+        company_city["city"] == selected_city
+    ]
 
     st.dataframe(
-        companies_by_city,
+        filtered,
         width="stretch"
     )
 
