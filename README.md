@@ -17,6 +17,12 @@ The platform is designed to answer questions such as:
 * What technologies and skills are most frequently requested?
 * How are hiring trends changing over time?
 * What proportion of roles are remote versus location-based?
+* Which states have the most openings?
+* Which companies are hiring in each city? 
+* Which companies post the most jobs over time?
+* Average jobs posted per day 
+* Most recent job postings 
+* Data Quality Metrics
 
 This project demonstrates the complete data lifecycle:
 
