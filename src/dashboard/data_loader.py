@@ -49,3 +49,50 @@ def get_jobs_by_day():
     engine = get_engine()
 
     return pd.read_sql(query, engine)
+
+def get_total_jobs():
+    query = """
+    SELECT COUNT(*) AS total_jobs
+    FROM jobs
+    """
+
+    return pd.read_sql(
+        query,
+        get_engine()
+    ).iloc[0]["total_jobs"]
+
+def get_total_cities():
+    query = """
+    SELECT COUNT(DISTINCT city) AS total_cities
+    FROM jobs
+    WHERE city IS NOT NULL
+    """
+
+    return pd.read_sql(
+        query,
+        get_engine()
+    ).iloc[0]["total_cities"]
+
+def get_total_companies():
+    query = """
+    SELECT COUNT(DISTINCT company)
+    AS total_companies
+    FROM jobs
+    """
+
+    return pd.read_sql(
+        query,
+        get_engine()
+    ).iloc[0]["total_companies"]
+
+def get_latest_posting():
+    query = """
+    SELECT MAX(created_at)
+    AS latest_posting
+    FROM jobs
+    """
+
+    return pd.read_sql(
+        query,
+        get_engine()
+    ).iloc[0]["latest_posting"]
