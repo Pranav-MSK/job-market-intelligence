@@ -66,41 +66,33 @@ flowchart TD
 ## Current Pipeline Status
 
 ### Completed
-
 * API Integration
 * Raw Data Storage
 * Data Transformation
 * Data Quality Checks
 * MySQL Database Design
+* Database Loading Layer
+* Analytics Layer
 
 ### In Progress
-
-* Database Loading Layer
+* Dashboard Development
 
 ### Planned
-
-* Analytics Layer
-* Dashboard Development
 * Pipeline Scheduling
+* Trend Analysis
+* Cloud Storage
 
 ---
 
 ## Tech Stack
 
 * Programming : Python 3.11+
-
 * Data Processing: Pandas
-
 * API Integration: Requests
-
 * Database: MySQL 8, SQLAlchemy
-
 * Configuration: python-dotenv
-
-* Dashboard (Planned): Streamlit, Plotly
-
+* Dashboard : Streamlit, Plotly
 * Testing (Planned): Pytest
-
 * Version Control: Git, GitHub
 
 ---
@@ -118,10 +110,21 @@ job-market-intelligence/
 │   └── pipeline.log
 │
 ├── sql/
+│   └── analytics/
+│       └── analytics.py
 │
 ├── src/
 │   ├── config/
 │   │   └── settings.py
+│   │
+│   ├── dashboard/
+│   │   ├── app.py
+│   │   ├── data_loader.py
+│   │   └── queries.py
+│   │
+│   ├── extract/
+│   │   ├── db.py
+│   │   └── load_jobs.py
 │   │
 │   ├── extract/
 │   │   ├── adzuna.py
@@ -135,10 +138,15 @@ job-market-intelligence/
 │   │   ├── clean_jobs.py
 │   │   └── save_processed.py
 │   │
-│   └── load/
-│
+│   └── __init__.py
+│  
+├── tests/
+│  
 ├── .env
+├── .env.example
 ├── .gitignore
+├── test_analytics.py
+├── test_db.py
 ├── main.py
 ├── requirements.txt
 └── README.md
@@ -244,7 +252,7 @@ The cleaned dataset will be loaded into MySQL for analytics and reporting.
 
 ## Environment Variables
 
-Create a `.env` file in the project root or refer `.env.example`:
+Create a `.env` file in the project root or refer [`.env.example`](.env.example):
 
 ```env
 ADZUNA_APP_ID=your_app_id
