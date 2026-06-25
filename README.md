@@ -400,6 +400,31 @@ The objective is to demonstrate practical skills in:
 
 ---
 
+<<<<<<< HEAD
+=======
+## Project Status
+
+Current Phase:
+
+```text
+Phase 1: Data Extraction
+```
+
+Roadmap:
+```
+[x] Project Setup
+[x] API Integration
+[x] Raw Data Storage
+[x] Data Transformation
+[ ] Database Loading
+[ ] Data Quality Framework
+[ ] Automation
+[ ] Dashboard Development
+```
+
+---
+
+>>>>>>> c46aa9271ce3a8f8d0cfb4a3ca77489990520bad
 ## License
 
 This project is intended for educational and portfolio purposes.
