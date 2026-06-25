@@ -19,6 +19,10 @@ st.set_page_config(
     layout="wide"
 )
 
+# --------------------------------------------------
+# Header
+# --------------------------------------------------
+
 st.markdown(
     """
     <h1 style='text-align:center;'>
@@ -39,12 +43,20 @@ st.markdown(
 
 st.divider()
 
+# --------------------------------------------------
+# Load Data
+# --------------------------------------------------
+
 companies = get_top_companies()
 cities = get_top_cities()
 jobs_by_day = get_jobs_by_day()
 recent_jobs = get_recent_jobs()
 quality = get_data_quality_metrics()
 avg_jobs = get_average_jobs_per_day()
+
+# --------------------------------------------------
+# KPI Row
+# --------------------------------------------------
 
 col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -64,39 +76,58 @@ col3.metric(
 )
 
 col4.metric(
-    "Latest Job",
+    "Latest Posting",
     str(get_latest_posting())[:10]
 )
 
 col5.metric(
-    "Avg Jobs / Day",
-    round(avg_jobs.iloc[0]["avg_jobs_per_day"],2)
+    "Average Jobs/Day",
+    round(
+        avg_jobs.iloc[0]["avg_jobs_per_day"],
+        2
+    )
 )
 
 st.divider()
 
+# --------------------------------------------------
+# Top Companies / Top Cities
+# --------------------------------------------------
+
 col6, col7 = st.columns(2)
 
 with col6:
+
     st.subheader("Top Hiring Companies")
+
     companies = companies.sort_values(
         "total_jobs",
         ascending=True
     )
+
     fig = px.bar(
         companies,
         x="total_jobs",
         y="company",
-        orientation="h",
-        title="Top Hiring Companies"
+        orientation="h"
     )
+
+    fig.update_layout(
+        height=450
+    )
+
     st.plotly_chart(
         fig,
-        width="stretch"
+        width="stretch",
+        config={
+            "displayModeBar": False
+        }
     )
 
 with col7:
+
     st.subheader("Top Hiring Cities")
+
     fig = px.bar(
         cities.sort_values(
             "total_jobs",
@@ -104,13 +135,24 @@ with col7:
         ),
         x="total_jobs",
         y="city",
-        orientation="h",
-        title="Top Hiring Cities"
+        orientation="h"
     )
+
+    fig.update_layout(
+        height=450
+    )
+
     st.plotly_chart(
         fig,
-        width="stretch"
+        width="stretch",
+        config={
+            "displayModeBar": False
+        }
     )
+
+# --------------------------------------------------
+# Hiring Trend
+# --------------------------------------------------
 
 st.subheader("Jobs Posted Over Time")
 
@@ -118,41 +160,101 @@ fig = px.line(
     jobs_by_day,
     x="posting_date",
     y="total_jobs",
-    title="Jobs Posted Over Time",
+    markers=True
+)
+
+fig.update_layout(
+    height=500
 )
 
 st.plotly_chart(
     fig,
     width="stretch",
+    config={
+        "displayModeBar": False
+    }
 )
+
+# --------------------------------------------------
+# Recent Jobs
+# --------------------------------------------------
 
 st.subheader("Most Recent Job Postings")
 
 st.dataframe(
     recent_jobs,
-    width="stretch",
+    width="stretch"
 )
 
+# --------------------------------------------------
+# Data Quality Metrics
+# --------------------------------------------------
+
 st.subheader("Data Quality Metrics")
+
+total_jobs = int(
+    quality.iloc[0]["total_jobs"]
+)
+
+unique_jobs = int(
+    quality.iloc[0]["unique_jobs"]
+)
+
+missing_city = int(
+    quality.iloc[0]["missing_city"]
+)
+
+missing_state = int(
+    quality.iloc[0]["missing_state"]
+)
+
+duplicate_jobs = (
+    total_jobs - unique_jobs
+)
+
+completeness = round(
+    (
+        (
+            total_jobs * 2
+            - missing_city
+            - missing_state
+        )
+        / (total_jobs * 2)
+    )
+    * 100,
+    2
+)
 
 col1, col2, col3, col4 = st.columns(4)
 
 col1.metric(
-    "Total Jobs",
-    int(quality.iloc[0]["total_jobs"])
+    "Duplicate Jobs",
+    duplicate_jobs
 )
 
 col2.metric(
-    "Unique Jobs",
-    int(quality.iloc[0]["unique_jobs"])
+    "Missing City",
+    missing_city
 )
 
 col3.metric(
-    "Missing City",
-    int(quality.iloc[0]["missing_city"])
+    "Missing State",
+    missing_state
 )
 
 col4.metric(
-    "Missing State",
-    int(quality.iloc[0]["missing_state"])
+    "Data Completeness %",
+    completeness
+)
+
+# --------------------------------------------------
+# Footer
+# --------------------------------------------------
+
+st.divider()
+
+st.caption(
+    "Data source: Adzuna API | "
+    "Updated via ETL pipeline | "
+    "Built with Streamlit"
 )
