@@ -96,3 +96,45 @@ def get_latest_posting():
         query,
         get_engine()
     ).iloc[0]["latest_posting"]
+
+def get_average_jobs_per_day():
+    query = """
+    SELECT
+        ROUND(COUNT(*) / COUNT(DISTINCT DATE(created_at)), 2)
+        AS avg_jobs_per_day
+    FROM jobs
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query, engine)
+
+def get_recent_jobs():
+    query = """
+    SELECT
+        title,
+        company,
+        city,
+        DATE(created_at) AS posted_date
+    FROM jobs
+    ORDER BY created_at DESC
+    LIMIT 10
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query, engine)
+
+def get_data_quality_metrics():
+    query = """
+    SELECT
+        COUNT(*) AS total_jobs,
+        SUM(city IS NULL) AS missing_city,
+        SUM(state IS NULL) AS missing_state,
+        COUNT(DISTINCT source_job_id) AS unique_jobs
+    FROM jobs
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query, engine)
