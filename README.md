@@ -1,6 +1,10 @@
 # Job Market Intelligence Platform
 
-An end-to-end Data Engineering and Analytics project that collects software engineering job postings from the Adzuna API, transforms and stores them in a relational database, and exposes hiring insights through an analytics dashboard.
+An end-to-end Data Engineering and Analytics project that collects software engineering job postings from the Adzuna API, transforms and validates the data, stores it in a relational database, and generates insights about hiring trends, demand hotspots, and skill requirements.
+
+The project is designed to mirror a real-world ETL pipeline used by analytics and data engineering teams.
+
+---
 
 ## Project Overview
 
@@ -20,78 +24,78 @@ This project demonstrates the complete data lifecycle:
 * Data Transformation
 * Data Validation
 * Database Loading
-* Pipeline Automation
-* Analytics & Visualization
+* Analytics Engineering
+* Dashboard Development
+* Workflow Automation
 
 ---
 
 ## Architecture
 
-```text
-                Adzuna API
-                     │
-                     ▼
-              Extract Layer
-                     │
-                     ▼
-              Raw JSON Files
-              (data/raw/)
-                     │
-                     ▼
-            Transform Layer
-                     │
-                     ▼
-             Clean Dataset
-          (data/processed/)
-                     │
-                     ▼
-              MySQL Database
-                     │
-                     ▼
-            Analytics Queries
-                     │
-                     ▼
-                Dashboard
+```mermaid
+flowchart TD
+
+    A[Adzuna Jobs API]
+    B[Extract Layer]
+    C[Raw JSON Storage]
+    D[Transform Layer]
+    E[Data Quality Checks]
+    F[Processed CSV Layer]
+    G[(MySQL Database)]
+    H[Analytics Layer]
+    I[Dashboard]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
 ```
+
+---
+
+## Current Pipeline Status
+
+### Completed
+
+* API Integration
+* Raw Data Storage
+* Data Transformation
+* Data Quality Checks
+* MySQL Database Design
+
+### In Progress
+
+* Database Loading Layer
+
+### Planned
+
+* Analytics Layer
+* Dashboard Development
+* Pipeline Scheduling
 
 ---
 
 ## Tech Stack
 
-### Programming
+* Programming : Python 3.11+
 
-* Python 3.11+
+* Data Processing: Pandas
 
-### Data Processing
+* API Integration: Requests
 
-* Pandas
+* Database: MySQL 8, SQLAlchemy
 
-### API Integration
+* Configuration: python-dotenv
 
-* Requests
+* Dashboard (Planned): Streamlit, Plotly
 
-### Database
+* Testing (Planned): Pytest
 
-* MySQL
-* SQLAlchemy
-
-### Configuration
-
-* python-dotenv
-
-### Dashboard
-
-* Streamlit
-* Plotly
-
-### Testing
-
-* Pytest
-
-### Version Control
-
-* Git
-* GitHub
+* Version Control: Git, GitHub
 
 ---
 
@@ -105,6 +109,7 @@ job-market-intelligence/
 │   └── processed/
 │
 ├── logs/
+│   └── pipeline.log
 │
 ├── sql/
 │
@@ -117,15 +122,14 @@ job-market-intelligence/
 │   │   ├── save_raw.py
 │   │   └── explore.py
 │   │
-│   ├── transform/
-│   │
-│   ├── load/
-│   │
 │   ├── quality/
+│   │   └── checks.py
 │   │
-│   └── dashboard/
-│
-├── tests/
+│   ├── transform/
+│   │   ├── clean_jobs.py
+│   │   └── save_processed.py
+│   │
+│   └── load/
 │
 ├── .env
 ├── .gitignore
@@ -138,11 +142,11 @@ job-market-intelligence/
 
 ## Data Pipeline
 
-### Extract
+### 1. Extract
 
 The pipeline retrieves software engineering job postings from the Adzuna API.
 
-Example fields:
+Example source fields:
 
 * Job ID
 * Title
@@ -151,62 +155,90 @@ Example fields:
 * Description
 * Created Date
 
-Raw responses are stored as timestamped JSON snapshots.
+Raw API responses are stored as timestamped JSON snapshots.
 
 Example:
 
 ```text
-data/raw/jobs_20260616_183755.json
+data/raw/jobs_20260623_183940.json
 ```
 
 ---
 
-### Transform
+### 2. Transform
 
 The transformation layer:
 
 * Flattens nested JSON structures
 * Standardizes field names
-* Parses location information
-* Removes duplicates
-* Performs validation checks
+* Parses location information into:
+  * city
+  * state
+  * country
+* Converts timestamps into UTC datetime format
+* Produces an analytics-ready dataset
 
 Output:
 
 ```text
-data/processed/jobs_clean.csv
+data/processed/jobs_clean_YYYYMMDD_HHMMSS.csv
 ```
 
 ---
 
-### Load
+### 3. Data Quality Validation
 
-Cleaned data is loaded into MySQL.
+Before loading, the pipeline validates:
 
-Primary table:
+* Total row count
+* Duplicate job IDs
+* Missing titles
+* Missing companies
+* Missing cities
+* Missing states
 
-```sql
-jobs
-```
-
-Key columns:
+Example output:
 
 ```text
-source_job_id
-title
-company
-city
-state
-country
-created_at
-description
+--- Data Quality Report ---
+
+total_rows: 50
+duplicate_job_ids: 0
+missing_titles: 0
+missing_companies: 0
+missing_cities: 18
+missing_states: 18
 ```
+
+---
+
+### 4. Load (In Progress)
+
+The cleaned dataset will be loaded into MySQL for analytics and reporting.
+
+---
+
+## Data Model
+
+### jobs
+
+| Column        | Type         | Description                       |
+| ------------- | ------------ | --------------------------------- |
+| source_job_id | VARCHAR(50)  | Unique job identifier from Adzuna |
+| title         | VARCHAR(255) | Job title                         |
+| company       | VARCHAR(255) | Hiring company                    |
+| city          | VARCHAR(100) | Job city                          |
+| state         | VARCHAR(100) | Job state                         |
+| country       | VARCHAR(100) | Job country                       |
+| created_at    | DATETIME     | Original job posting timestamp    |
+| description   | TEXT         | Job description                   |
+| inserted_at   | TIMESTAMP    | Database insertion timestamp      |
 
 ---
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root or refer `.env.example`:
 
 ```env
 ADZUNA_APP_ID=your_app_id
@@ -214,7 +246,7 @@ ADZUNA_APP_KEY=your_app_key
 
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
-MYSQL_DATABASE=job_market
+MYSQL_DATABASE=job_market_intelligence
 MYSQL_USER=root
 MYSQL_PASSWORD=your_password
 ```
@@ -228,7 +260,7 @@ Do not commit this file to GitHub.
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/job-market-intelligence.git
+git clone https://github.com/Pranav-MSK/job-market-intelligence.git
 
 cd job-market-intelligence
 ```
@@ -239,7 +271,7 @@ Create a virtual environment:
 python -m venv venv
 ```
 
-Activate:
+Activate the environment.
 
 ### Windows
 
@@ -247,7 +279,7 @@ Activate:
 venv\Scripts\activate
 ```
 
-### Linux / Mac
+### Linux / macOS
 
 ```bash
 source venv/bin/activate
@@ -263,43 +295,99 @@ pip install -r requirements.txt
 
 ## Running the Pipeline
 
-Run the ETL pipeline:
+Execute the ETL pipeline:
 
 ```bash
 python main.py
 ```
 
-Expected output:
+Example output:
 
 ```text
-Saved to data/raw/jobs_YYYYMMDD_HHMMSS.json
+Saved raw file: data/raw/jobs_20260623_183940.json
+
+Rows processed: 50
+
+Columns:
+source_job_id
+title
+company
+city
+state
+country
+created_at
+description
+
+--- Data Quality Report ---
+total_rows: 50
+duplicate_job_ids: 0
+missing_titles: 0
+missing_companies: 0
+missing_cities: 18
+missing_states: 18
+
+Processed file saved:
+data/processed/jobs_clean_20260623_183940.csv
 ```
 
 ---
 
-## Data Quality Checks
+## Roadmap
 
-The pipeline validates:
+### Phase 1 — Data Ingestion
 
-* Row counts
-* Duplicate job IDs
-* Missing critical fields
-* Schema consistency
+* [x] Project setup
+* [x] GitHub repository setup
+* [x] Adzuna API integration
+* [x] Raw JSON storage
 
-Examples:
+### Phase 2 — Data Processing
 
-```text
-Rows Processed
-Duplicate Records
-Missing Companies
-Missing Titles
-```
+* [x] Transformation layer
+* [x] Processed CSV generation
+* [x] Data quality framework
+
+### Phase 3 — Data Storage
+
+* [x] MySQL database design
+* [ ] Database loading layer
+* [ ] Incremental loading
+* [ ] Duplicate-safe inserts
+
+### Phase 4 — Analytics
+
+* [ ] SQL analytics queries
+* [ ] KPI generation
+* [ ] Hiring trend analysis
+* [ ] Skill demand analysis
+
+### Phase 5 — Visualization
+
+* [ ] Streamlit dashboard
+* [ ] Interactive charts
+* [ ] Hiring trend monitoring
+
+### Phase 6 — Automation
+
+* [ ] Scheduled pipeline execution
+* [ ] Automated refreshes
+* [ ] Monitoring and alerts
 
 ---
 
-## Learning Objectives
+## Why This Project?
 
-This project was built to practice:
+This project simulates a real-world data engineering workflow by implementing the complete data lifecycle:
+
+1. Data ingestion from an external API
+2. Raw data storage for reproducibility
+3. Data transformation and standardization
+4. Data quality validation
+5. Relational database design
+6. Analytics and reporting
+7. Workflow automation
+
+The objective is to demonstrate practical skills in:
 
 * Data Engineering
 * ETL Development
@@ -312,29 +400,6 @@ This project was built to practice:
 
 ---
 
-## Project Status
-
-Current Phase:
-
-```text
-Phase 1: Data Extraction
-```
-
-Roadmap:
-
-```text
-[x] Project Setup
-[x] API Integration
-[x] Raw Data Storage
-[ ] Data Transformation
-[ ] Database Loading
-[ ] Data Quality Framework
-[ ] Automation
-[ ] Dashboard Development
-```
-
----
-
 ## License
 
-This project is for educational and portfolio purposes.
+This project is intended for educational and portfolio purposes.
