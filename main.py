@@ -29,6 +29,7 @@ def main():
     print(f"Saved raw file: {raw_path}")
 
     df = clean_jobs(data)
+    print(df[["city", "state", "country"]].drop_duplicates().head(20))
 
     print(f"Rows processed: {len(df)}")
 

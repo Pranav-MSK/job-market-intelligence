@@ -5,22 +5,42 @@ def parse_location(location_str):
     if not location_str:
         return None, None, "India"
 
-    parts = [
-        part.strip()
-        for part in location_str.split(",")
-    ]
+    parts = [part.strip() for part in location_str.split(",")]
 
-    if len(parts) == 1:
-        return None, None, parts[0]
+    city = None
+    state = None
+    country = "India"
 
-    if len(parts) == 2:
-        return parts[0], parts[1], "India"
+    if len(parts) == 3:
+        city = parts[0]
+        state = parts[1]
+        country = parts[2]
 
-    return (
-        parts[0],
-        parts[1],
-        parts[-1],
-    )
+    elif len(parts) == 2:
+        # State, Country
+        if parts[1].lower() == "india":
+            state = parts[0]
+            country = parts[1]
+
+        # City, State
+        else:
+            city = parts[0]
+            state = parts[1]
+
+    elif len(parts) == 1:
+        country = parts[0]
+
+    # Validation
+    if city == state:
+        city = None
+
+    if city == country:
+        city = None
+
+    if state == country:
+        state = None
+
+    return city, state, country
 
 
 def clean_jobs(raw_data):
@@ -33,9 +53,7 @@ def clean_jobs(raw_data):
             .get("display_name")
         )
 
-        city, state, country = (
-            parse_location(location)
-        )
+        city, state, country = parse_location(location)
 
         rows.append(
             {
