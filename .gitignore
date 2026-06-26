@@ -5,7 +5,6 @@ __pycache__/
 *.pyc
 
 data/raw/
-data/processed/
 
 logs/
 
@@ -14,3 +13,8 @@ logs/
 
 *.log
 file.txt
+
+# Ignore all processed CSVs except latest_jobs.csv
+data/processed/jobs_clean_*.csv
+!data/processed/latest_jobs.csv
+!data/processed/latest_skills.csv
