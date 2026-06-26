@@ -15,6 +15,7 @@ from src.dashboard.data_loader import (
     get_top_states,
     get_company_city_data,
     get_company_posting_trend,
+    get_top_skills,
 )
 
 st.set_page_config(
@@ -59,6 +60,7 @@ avg_jobs = get_average_jobs_per_day()
 states = get_top_states()
 company_city = get_company_city_data()
 company_trend = get_company_posting_trend()
+skills = get_top_skills()
 
 # --------------------------------------------------
 # KPI Row
@@ -219,9 +221,7 @@ st.plotly_chart(
     }
 )
 
-st.subheader(
-    "Company Hiring Trends"
-)
+st.subheader("Company Hiring Trends")
 
 fig = px.line(
     company_trend,
@@ -250,6 +250,27 @@ st.dataframe(
 )
 
 # --------------------------------------------------
+# Top Skills
+# --------------------------------------------------
+
+st.subheader("Top Requested Skills")
+
+fig = px.bar(
+    skills.sort_values("total_jobs",ascending=True),
+    x="total_jobs",
+    y="skill",
+    orientation="h",
+)
+
+st.plotly_chart(
+    fig,
+    width="stretch",
+    config={
+        "displayModeBar": False
+    }
+)
+
+# --------------------------------------------------
 # Data Quality Metrics
 # --------------------------------------------------
 
@@ -275,18 +296,7 @@ duplicate_jobs = (
     total_jobs - unique_jobs
 )
 
-completeness = round(
-    (
-        (
-            total_jobs * 2
-            - missing_city
-            - missing_state
-        )
-        / (total_jobs * 2)
-    )
-    * 100,
-    2
-)
+completeness = round(((total_jobs * 2 - missing_city - missing_state)/ (total_jobs * 2))* 100,2)
 
 col1, col2, col3, col4 = st.columns(4)
 

@@ -184,3 +184,16 @@ def get_company_posting_trend():
     engine = get_engine()
 
     return pd.read_sql(query, engine)
+
+def get_top_skills():
+    query = """
+    SELECT
+        skill,
+        total_jobs
+    FROM skills
+    ORDER BY total_jobs DESC
+    """
+
+    engine = get_engine()
+
+    return pd.read_sql(query,engine)

@@ -5,11 +5,12 @@ from src.extract.save_raw import save_raw
 
 from src.transform.clean_jobs import clean_jobs
 from src.transform.save_processed import save_processed
+from src.transform.extract_skills import extract_skills
 
 from src.quality.checks import run_quality_checks
 
 from src.load.load_jobs import load_jobs
-
+from src.load.load_skills import load_skills
 
 logging.basicConfig(
     filename="logs/pipeline.log",
@@ -46,6 +47,10 @@ def main():
         f"\nProcessed file saved: "
         f"{processed_path}"
     )
+    
+    skills_df = extract_skills(df)
+
+    load_skills(skills_df)
 
     logging.info(
         f"Fetched {len(data['results'])} jobs"
