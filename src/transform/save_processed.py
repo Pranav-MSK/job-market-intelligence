@@ -1,29 +1,40 @@
 from pathlib import Path
-from datetime import datetime
+import pandas as pd
 
 
 def save_processed(df):
 
-    Path(
-        "data/processed"
-    ).mkdir(
+    processed_dir = Path("data/processed")
+
+    processed_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    timestamp = (
-        datetime.now()
-        .strftime("%Y%m%d_%H%M%S")
+    latest_file = (
+        processed_dir /
+        "latest_jobs.csv"
     )
 
-    filename = (
-        f"data/processed/"
-        f"jobs_clean_{timestamp}.csv"
-    )
+    if latest_file.exists():
+
+        existing = pd.read_csv(
+            latest_file
+        )
+
+        df = pd.concat(
+            [existing, df],
+            ignore_index=True,
+        )
+
+        df.drop_duplicates(
+            subset="source_job_id",
+            inplace=True,
+        )
 
     df.to_csv(
-        filename,
+        latest_file,
         index=False,
     )
 
-    return filename
+    return latest_file

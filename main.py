@@ -6,6 +6,7 @@ from src.extract.save_raw import save_raw
 from src.transform.clean_jobs import clean_jobs
 from src.transform.save_processed import save_processed
 from src.transform.extract_skills import extract_skills
+from src.transform.save_skills import save_skills
 
 from src.quality.checks import run_quality_checks
 
@@ -29,7 +30,6 @@ def main():
     print(f"Saved raw file: {raw_path}")
 
     df = clean_jobs(data)
-    print(df[["city", "state", "country"]].drop_duplicates().head(20))
 
     print(f"Rows processed: {len(df)}")
 
@@ -52,6 +52,8 @@ def main():
     skills_df = extract_skills(df)
 
     load_skills(skills_df)
+
+    save_skills(skills_df)
 
     logging.info(
         f"Fetched {len(data['results'])} jobs"

@@ -109,18 +109,7 @@ job-market-intelligence/
 ├── logs/
 │   └── pipeline.log
 │
-├── sql/
-│   ├── companies_by_city.sql
-│   ├── jobs_by_country.sql
-│   ├── jobs_by_day.sql
-│   ├── remote_jobs.sql
-│   ├── top_cities.sql
-│   ├── top_companies.sql
-│   └──top_states.sql
-│
 ├── src/ 
-│   ├── analytics/
-│   │   └── analytics.py
 │   │
 │   ├── config/
 │   │   └── settings.py
