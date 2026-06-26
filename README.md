@@ -110,10 +110,18 @@ job-market-intelligence/
 │   └── pipeline.log
 │
 ├── sql/
-│   └── analytics/
-│       └── analytics.py
+│   ├── companies_by_city.sql
+│   ├── jobs_by_country.sql
+│   ├── jobs_by_day.sql
+│   ├── remote_jobs.sql
+│   ├── top_cities.sql
+│   ├── top_companies.sql
+│   └──top_states.sql
 │
-├── src/
+├── src/ 
+│   ├── analytics/
+│   │   └── analytics.py
+│   │
 │   ├── config/
 │   │   └── settings.py
 │   │
@@ -123,19 +131,20 @@ job-market-intelligence/
 │   │   └── queries.py
 │   │
 │   ├── extract/
-│   │   ├── db.py
-│   │   └── load_jobs.py
-│   │
-│   ├── extract/
 │   │   ├── adzuna.py
-│   │   ├── save_raw.py
-│   │   └── explore.py
+│   │   └── save_raw.py
+│   │
+│   ├── load/
+│   │   ├── db.py
+│   │   ├── load_jobs.py
+│   │   └── load_skills.py
 │   │
 │   ├── quality/
 │   │   └── checks.py
 │   │
 │   ├── transform/
 │   │   ├── clean_jobs.py
+│   │   ├── extract_skills.py
 │   │   └── save_processed.py
 │   │
 │   └── __init__.py
