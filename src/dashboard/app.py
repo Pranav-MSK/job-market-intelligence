@@ -1,22 +1,12 @@
 import streamlit as st
 import plotly.express as px
 
-from src.dashboard.data_loader import (
-    get_top_companies,
-    get_top_cities,
-    get_jobs_by_day,
-    get_total_jobs,
-    get_total_cities,
-    get_total_companies,
-    get_latest_posting,
-    get_average_jobs_per_day,
-    get_recent_jobs,
-    get_data_quality_metrics,
-    get_top_states,
-    get_company_city_data,
-    get_company_posting_trend,
-    get_top_skills,
-)
+USE_SQL = False # Set to True to use data_loader_sql.py (development), False to use data_loader_csv.py (production/streamlit deployment)
+
+if USE_SQL:
+    from src.dashboard.data_loader_sql import *
+else:
+    from src.dashboard.data_loader_csv import *
 
 st.set_page_config(
     page_title="Job Market Intelligence",
