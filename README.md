@@ -15,7 +15,7 @@ The project is designed to simulate a production-style ETL pipeline while demons
 
 Explore the live, interactive data insights here:
 
-👉 **Streamlit Dashboard:** [https://your-app.streamlit.app](https://your-app.streamlit.app) <!--(Update this link after deployment)-->
+👉 **Streamlit Dashboard:** [Job Market Intelligence](https://software-job-market.streamlit.app/) <!--(Update this link after deployment)-->
 
 ---
 
