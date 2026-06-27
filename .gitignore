@@ -6,12 +6,9 @@ __pycache__/
 
 data/raw/
 
-logs/
-
 .vscode/
 .idea/
 
-*.log
 file.txt
 
 # Ignore all processed CSVs except latest_jobs.csv

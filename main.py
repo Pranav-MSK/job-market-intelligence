@@ -13,6 +13,7 @@ from src.quality.checks import run_quality_checks
 from src.load.load_jobs import load_jobs
 from src.load.load_skills import load_skills
 
+
 logging.basicConfig(
     filename="logs/pipeline.log",
     level=logging.INFO,
@@ -23,52 +24,103 @@ logging.basicConfig(
 def main():
     logging.info("Pipeline started")
 
-    data = fetch_jobs()
+    try:
+        # -------------------------
+        # Extract
+        # -------------------------
+        logging.info("Fetching jobs from Adzuna API")
 
-    raw_path = save_raw(data)
+        data = fetch_jobs()
 
-    print(f"Saved raw file: {raw_path}")
+        logging.info(
+            "Fetched %d jobs",
+            len(data["results"])
+        )
 
-    df = clean_jobs(data)
+        raw_path = save_raw(data)
 
-    print(f"Rows processed: {len(df)}")
+        logging.info(
+            "Raw data saved to %s",
+            raw_path
+        )
 
-    print(
-        f"Columns: "
-        f"{', '.join(df.columns)}"
-    )
+        print(f"Saved raw file: {raw_path}")
 
-    run_quality_checks(df)
+        # -------------------------
+        # Transform
+        # -------------------------
+        logging.info("Cleaning job data")
 
-    processed_path = save_processed(df)
+        df = clean_jobs(data)
 
-    load_jobs(df)
+        print(f"Rows processed: {len(df)}")
 
-    print(
-        f"\nProcessed file saved: "
-        f"{processed_path}"
-    )
-    
-    skills_df = extract_skills(df)
+        print(
+            f"Columns: {', '.join(df.columns)}"
+        )
 
-    load_skills(skills_df)
+        logging.info(
+            "Processed %d rows",
+            len(df)
+        )
 
-    save_skills(skills_df)
+        logging.info("Running data quality checks")
 
-    logging.info(
-        f"Fetched {len(data['results'])} jobs"
-    )
+        run_quality_checks(df)
 
-    logging.info(
-        f"Raw data saved to {raw_path}"
-    )
+        logging.info("Saving processed dataset")
 
-    logging.info(
-        f"Processed data saved to "
-        f"{processed_path}"
-    )
+        processed_path = save_processed(df)
 
-    logging.info("Pipeline completed")
+        print(
+            f"\nProcessed file saved: "
+            f"{processed_path}"
+        )
+
+        logging.info(
+            "Processed dataset saved to %s",
+            processed_path
+        )
+
+        logging.info("Extracting skills")
+
+        skills_df = extract_skills(df)
+
+        logging.info(
+            "Extracted %d unique skills",
+            len(skills_df)
+        )
+
+        logging.info("Saving skills CSV")
+
+        save_skills(skills_df)
+
+        # -------------------------
+        # Load
+        # -------------------------
+        logging.info("Loading jobs into MySQL")
+
+        inserted_jobs = load_jobs(df)
+
+        logging.info(
+            "Inserted %d new jobs",
+            inserted_jobs
+        )
+
+        logging.info("Loading skills into MySQL")
+
+        loaded_skills = load_skills(skills_df)
+
+        logging.info(
+            "Loaded %d skills",
+            loaded_skills
+        )
+
+        logging.info("Pipeline completed successfully")
+
+    except Exception:
+        logging.exception("Pipeline failed")
+        raise
 
 
 if __name__ == "__main__":

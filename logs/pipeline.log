@@ -1,0 +1,5 @@
+2026-06-26 22:27:58,267 - INFO - Pipeline started
+2026-06-26 22:28:11,048 - INFO - Fetched 50 jobs
+2026-06-26 22:28:11,048 - INFO - Raw data saved to data/raw/jobs_20260626_222810.json
+2026-06-26 22:28:11,048 - INFO - Processed data saved to data\processed\latest_jobs.csv
+2026-06-26 22:28:11,048 - INFO - Pipeline completed
