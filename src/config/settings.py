@@ -17,3 +17,5 @@ MYSQL_PORT = os.getenv("MYSQL_PORT")
 MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+
+USE_SQL = False # Set to True to use data_loader_sql.py (development), False to use data_loader_csv.py (production/streamlit deployment)

@@ -1,0 +1,50 @@
+name: Update Job Data
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # Every day at 03:00 UTC
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Create .env
+        run: |
+          echo "ADZUNA_APP_ID=${{ secrets.ADZUNA_APP_ID }}" >> .env
+          echo "ADZUNA_APP_KEY=${{ secrets.ADZUNA_APP_KEY }}" >> .env
+
+      - name: Run pipeline
+        run: |
+          python main.py
+
+      - name: Commit updated CSVs
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          git add data/processed/latest_jobs.csv
+          git add data/processed/latest_skills.csv
+
+          git diff --cached --quiet || git commit -m "Update processed job data"
+
+          git push

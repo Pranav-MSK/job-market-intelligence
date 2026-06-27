@@ -13,6 +13,8 @@ from src.quality.checks import run_quality_checks
 from src.load.load_jobs import load_jobs
 from src.load.load_skills import load_skills
 
+from src.config.settings import USE_SQL
+
 
 logging.basicConfig(
     filename="logs/pipeline.log",
@@ -98,25 +100,31 @@ def main():
         # -------------------------
         # Load
         # -------------------------
-        logging.info("Loading jobs into MySQL")
+        if USE_SQL:
 
-        inserted_jobs = load_jobs(df)
+            logging.info("Loading jobs into MySQL")
 
-        logging.info(
-            "Inserted %d new jobs",
-            inserted_jobs
-        )
+            inserted_jobs = load_jobs(df)
 
-        logging.info("Loading skills into MySQL")
+            logging.info(
+                "Inserted %d new jobs",
+                inserted_jobs
+            )
 
-        loaded_skills = load_skills(skills_df)
+            logging.info("Loading skills into MySQL")
 
-        logging.info(
-            "Loaded %d skills",
-            loaded_skills
-        )
+            loaded_skills = load_skills(skills_df)
 
-        logging.info("Pipeline completed successfully")
+            logging.info(
+                "Loaded %d skills",
+                loaded_skills
+            )
+
+        else:
+
+            logging.info(
+                "USE_SQL=False. Skipping MySQL load."
+            )
 
     except Exception:
         logging.exception("Pipeline failed")

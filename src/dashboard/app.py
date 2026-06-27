@@ -1,7 +1,6 @@
 import streamlit as st
 import plotly.express as px
-
-USE_SQL = False # Set to True to use data_loader_sql.py (development), False to use data_loader_csv.py (production/streamlit deployment)
+from src.config.settings import USE_SQL
 
 if USE_SQL:
     from src.dashboard.data_loader_sql import *
