@@ -42,14 +42,13 @@ Explore the live, interactive data insights here:
 - CSV-based dashboard mode for cloud deployment
 - Modular project structure
 
-<!---
+---
 ## 📸 Dashboard Preview
 
-
-| Executive Overview & KPI Metrics | Skill Demands & Geospatial Trends |
+| Executive Overview & KPIs | Trend & Company Analytics |
 |:---:|:---:|
-| ![KPI Dashboard Placeholder](https://placehold.co/600x400?text=Dashboard+Overview+Screenshot) | ![Analytics Dashboard Placeholder](https://placehold.co/600x400?text=Skill+Charts+Screenshot) |
--->
+| ![KPI Dashboard](assets/Dashboard-1.png) | ![Analytics Dashboard](assets/Dashboard-2.png) |
+| ![Top Skills and Data Quality Metrics](assets/Dashboard-3.png) | ![Top Hiring States](assets/Dashboard-4.png) |
 
 ---
 
