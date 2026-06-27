@@ -1,55 +1,105 @@
-# Job Market Intelligence Platform
+# 📊 Job Market Intelligence Platform
 
-An end-to-end Data Engineering and Analytics project that collects software engineering job postings from the Adzuna API, transforms and validates the data, stores it in a relational database, and generates insights about hiring trends, demand hotspots, and skill requirements.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python: 3.11](https://img.shields.io/badge/Python-3.11-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B.svg?logo=Streamlit&logoColor=white)](https://streamlit.io/)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1.svg?logo=mysql&logoColor=white)](https://www.mysql.com/)
 
-The project is designed to mirror a real-world ETL pipeline used by analytics and data engineering teams.
+An end-to-end Data Engineering project that collects software engineering job postings from the Adzuna API, transforms and validates the data, stores it in MySQL, and visualizes hiring trends through an interactive Streamlit dashboard.
+
+The project is designed to simulate a production-style ETL pipeline while demonstrating practical data engineering, analytics, and dashboard development skills.
 
 ---
 
-## Project Overview
+## 🚀 Live Demo
 
-The goal of this project is to build an automated pipeline that tracks labor market trends by collecting job postings and converting them into actionable insights.
+Explore the live, interactive data insights here:
 
-The platform is designed to answer questions such as:
+👉 **Streamlit Dashboard:** [https://your-app.streamlit.app](https://your-app.streamlit.app) <!--(Update this link after deployment)-->
 
-* Which companies are hiring the most software engineers?
-* Which cities have the highest demand for technical talent?
-* What technologies and skills are most frequently requested?
-* How are hiring trends changing over time?
-* What proportion of roles are remote versus location-based?
-* Which states have the most openings?
-* Which companies are hiring in each city? 
-* Which companies post the most jobs over time?
-* Average jobs posted per day 
-* Most recent job postings 
-* Data Quality Metrics
+---
 
-This project demonstrates the complete data lifecycle:
+## 🛠️ Skills Demonstrated
 
-* Data Extraction
-* Data Transformation
-* Data Validation
-* Database Loading
-* Analytics Engineering
-* Dashboard Development
-* Workflow Automation
+* **Data Engineering & ETL:** Designed and built a modular end-to-end batch processing pipeline featuring automated API data ingestion, data transformation, robust quality validation, and duplicate-safe incremental loading.
+* **Python Development:** Implemented a clean, object-oriented project structure using `Pandas` for data manipulation, `Requests` for REST API integration, `SQLAlchemy` for ORM connectivity, and `python-dotenv` for environment configuration.
+* **SQL & Database Design:** Designed relational MySQL schemas and implemented data modeling best practices, complex aggregate queries, filtering, and optimized data storage logic.
+* **Analytics Engineering:** Programmatically extracted technical skills from unstructured job descriptions and developed core business metrics, tracking hiring trends, geographic talent demand, and company-specific KPIs.
+* **Data Visualization:** Built interactive, production-ready frontend dashboards using `Streamlit` and `Plotly` complete with dynamic charts, KPI cards, filterable tables, and a split CSV/SQL mode for cloud-optimized deployments.
+* **Software Engineering Practices:** Applied industry-standard version control (`Git` & `GitHub`), structured documentation, modular software architecture, dependency management, and virtual environments.
+
+---
+
+## Features
+
+- Automated extraction of software engineering jobs from the Adzuna API
+- Raw JSON snapshot storage
+- Data cleaning and transformation using Pandas
+- Data quality validation
+- Incremental loading into MySQL (duplicate-safe)
+- Skill extraction from job descriptions
+- Interactive Streamlit dashboard
+- CSV-based dashboard mode for cloud deployment
+- Modular project structure
+
+<!---
+## 📸 Dashboard Preview
+
+
+| Executive Overview & KPI Metrics | Skill Demands & Geospatial Trends |
+|:---:|:---:|
+| ![KPI Dashboard Placeholder](https://placehold.co/600x400?text=Dashboard+Overview+Screenshot) | ![Analytics Dashboard Placeholder](https://placehold.co/600x400?text=Skill+Charts+Screenshot) |
+-->
+
+---
+
+## Key Business Questions
+
+The dashboard is designed to answer questions such as:
+
+- Which companies are hiring the most software engineers?
+- Which cities have the highest demand for technical talent?
+- Which states have the most job openings?
+- Which companies are hiring in each city?
+- What technologies and skills are most frequently requested?
+- How are hiring trends changing over time?
+- Which companies post the most jobs over time?
+- What is the average number of jobs posted per day?
+- What are the most recent job postings?
+- What data quality issues exist in the collected dataset?
+
+---
+
+## Dashboard
+
+The Streamlit dashboard includes:
+
+- KPI cards
+- Top hiring companies
+- Top hiring cities
+- Top hiring states
+- Top Requested Skills
+- Jobs posted over time
+- Company hiring trends
+- Recent job postings
+- Data quality metrics
 
 ---
 
 ## Architecture
 
 ```mermaid
-flowchart TD
+flowchart LR
 
-    A[Adzuna Jobs API]
-    B[Extract Layer]
-    C[Raw JSON Storage]
-    D[Transform Layer]
-    E[Data Quality Checks]
-    F[Processed CSV Layer]
-    G[(MySQL Database)]
-    H[Analytics Layer]
-    I[Dashboard]
+    A[Adzuna API]
+    B[Extract]
+    C[Raw JSON]
+    D[Transform]
+    E[Data Quality]
+    F[Processed CSV]
+    G[(MySQL)]
+    H[Analytics]
+    I[Streamlit Dashboard]
 
     A --> B
     B --> C
@@ -59,41 +109,24 @@ flowchart TD
     F --> G
     G --> H
     H --> I
+
 ```
-
----
-
-## Current Pipeline Status
-
-### Completed
-* API Integration
-* Raw Data Storage
-* Data Transformation
-* Data Quality Checks
-* MySQL Database Design
-* Database Loading Layer
-* Analytics Layer
-
-### In Progress
-* Dashboard Development
-
-### Planned
-* Pipeline Scheduling
-* Trend Analysis
-* Cloud Storage
 
 ---
 
 ## Tech Stack
 
-* Programming : Python 3.11+
-* Data Processing: Pandas
-* API Integration: Requests
-* Database: MySQL 8, SQLAlchemy
-* Configuration: python-dotenv
-* Dashboard : Streamlit, Plotly
-* Testing (Planned): Pytest
-* Version Control: Git, GitHub
+| Category | Technology |
+|-----------|------------|
+| Language | Python 3.11 |
+| Data Processing | Pandas |
+| API | Adzuna Jobs API |
+| Database | MySQL 8 |
+| ORM | SQLAlchemy |
+| Dashboard | Streamlit |
+| Visualization | Plotly |
+| Configuration | python-dotenv |
+| Version Control | Git & GitHub |
 
 ---
 
@@ -101,24 +134,31 @@ flowchart TD
 
 ```text
 job-market-intelligence/
-
+│
 ├── data/
 │   ├── raw/
 │   └── processed/
 │
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── DASHBOARD.md
+│   ├── DATA_PIPELINE.md
+│   └── SETUP.md
+│
 ├── logs/
 │   └── pipeline.log
 │
-├── src/ 
+├── src/
 │   │
 │   ├── config/
 │   │   └── settings.py
 │   │
 │   ├── dashboard/
 │   │   ├── app.py
-│   │   ├── data_loader.py
+│   │   ├── data_loader_csv.py
+│   │   ├── data_loader_sql.py  
 │   │   └── queries.py
-│   │
+│   │ 
 │   ├── extract/
 │   │   ├── adzuna.py
 │   │   └── save_raw.py
@@ -132,144 +172,27 @@ job-market-intelligence/
 │   │   └── checks.py
 │   │
 │   ├── transform/
-│   │   ├── clean_jobs.py
-│   │   ├── extract_skills.py
+│   │   ├── clean_jobs.py 
+│   │   ├── extract_skills.py 
 │   │   └── save_processed.py
 │   │
 │   └── __init__.py
-│  
+│
 ├── tests/
-│  
+│   └── test_db.py
+│
 ├── .env
 ├── .env.example
-├── .gitignore
-├── test_analytics.py
-├── test_db.py
 ├── main.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── LICENSE
 ```
-
 ---
 
-## Data Pipeline
+## Quick Start
 
-### 1. Extract
-
-The pipeline retrieves software engineering job postings from the Adzuna API.
-
-Example source fields:
-
-* Job ID
-* Title
-* Company
-* Location
-* Description
-* Created Date
-
-Raw API responses are stored as timestamped JSON snapshots.
-
-Example:
-
-```text
-data/raw/jobs_20260623_183940.json
-```
-
----
-
-### 2. Transform
-
-The transformation layer:
-
-* Flattens nested JSON structures
-* Standardizes field names
-* Parses location information into:
-  * city
-  * state
-  * country
-* Converts timestamps into UTC datetime format
-* Produces an analytics-ready dataset
-
-Output:
-
-```text
-data/processed/jobs_clean_YYYYMMDD_HHMMSS.csv
-```
-
----
-
-### 3. Data Quality Validation
-
-Before loading, the pipeline validates:
-
-* Total row count
-* Duplicate job IDs
-* Missing titles
-* Missing companies
-* Missing cities
-* Missing states
-
-Example output:
-
-```text
---- Data Quality Report ---
-
-total_rows: 50
-duplicate_job_ids: 0
-missing_titles: 0
-missing_companies: 0
-missing_cities: 18
-missing_states: 18
-```
-
----
-
-### 4. Load (In Progress)
-
-The cleaned dataset will be loaded into MySQL for analytics and reporting.
-
----
-
-## Data Model
-
-### jobs
-
-| Column        | Type         | Description                       |
-| ------------- | ------------ | --------------------------------- |
-| source_job_id | VARCHAR(50)  | Unique job identifier from Adzuna |
-| title         | VARCHAR(255) | Job title                         |
-| company       | VARCHAR(255) | Hiring company                    |
-| city          | VARCHAR(100) | Job city                          |
-| state         | VARCHAR(100) | Job state                         |
-| country       | VARCHAR(100) | Job country                       |
-| created_at    | DATETIME     | Original job posting timestamp    |
-| description   | TEXT         | Job description                   |
-| inserted_at   | TIMESTAMP    | Database insertion timestamp      |
-
----
-
-## Environment Variables
-
-Create a `.env` file in the project root or refer [`.env.example`](.env.example):
-
-```env
-ADZUNA_APP_ID=your_app_id
-ADZUNA_APP_KEY=your_app_key
-
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_DATABASE=job_market_intelligence
-MYSQL_USER=root
-MYSQL_PASSWORD=your_password
-```
-
-Do not commit this file to GitHub.
-
----
-
-## Installation
-
-Clone the repository:
+Clone the repository
 
 ```bash
 git clone https://github.com/Pranav-MSK/job-market-intelligence.git
@@ -277,141 +200,63 @@ git clone https://github.com/Pranav-MSK/job-market-intelligence.git
 cd job-market-intelligence
 ```
 
-Create a virtual environment:
+Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate the environment.
+Activate it
 
-### Windows
+Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Linux / macOS
+Linux / macOS
 
 ```bash
 source venv/bin/activate
 ```
 
-Install dependencies:
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+Create a `.env` file using `.env.example`.
 
-## Running the Pipeline
-
-Execute the ETL pipeline:
+Run the ETL pipeline
 
 ```bash
 python main.py
 ```
 
-Example output:
+Launch the dashboard
 
-```text
-Saved raw file: data/raw/jobs_20260623_183940.json
-
-Rows processed: 50
-
-Columns:
-source_job_id
-title
-company
-city
-state
-country
-created_at
-description
-
---- Data Quality Report ---
-total_rows: 50
-duplicate_job_ids: 0
-missing_titles: 0
-missing_companies: 0
-missing_cities: 18
-missing_states: 18
-
-Processed file saved:
-data/processed/jobs_clean_20260623_183940.csv
+```bash
+python -m streamlit run src/dashboard/app.py
 ```
 
 ---
 
-## Roadmap
+## Documentation
 
-### Phase 1 — Data Ingestion
+Detailed documentation is available in the `docs/` directory.
 
-* [x] Project setup
-* [x] GitHub repository setup
-* [x] Adzuna API integration
-* [x] Raw JSON storage
-
-### Phase 2 — Data Processing
-
-* [x] Transformation layer
-* [x] Processed CSV generation
-* [x] Data quality framework
-
-### Phase 3 — Data Storage
-
-* [x] MySQL database design
-* [x] Database loading layer
-* [x] Incremental loading
-* [x] Duplicate-safe inserts
-
-### Phase 4 — Analytics
-
-* [x] SQL analytics queries
-* [x] KPI generation
-* [x] Hiring trend analysis
-* [x] Skill demand analysis
-
-### Phase 5 — Visualization
-
-* [x] Streamlit dashboard
-* [x] Interactive charts
-* [x] Hiring trend monitoring
-
-### Phase 6 — Automation
-
-* [ ] Scheduled pipeline execution
-* [ ] Automated refreshes
-* [ ] Monitoring and alerts
-
----
-
-## Why This Project?
-
-This project simulates a real-world data engineering workflow by implementing the complete data lifecycle:
-
-1. Data ingestion from an external API
-2. Raw data storage for reproducibility
-3. Data transformation and standardization
-4. Data quality validation
-5. Relational database design
-6. Analytics and reporting
-7. Workflow automation
-
-The objective is to demonstrate practical skills in:
-
-* Data Engineering
-* ETL Development
-* API Integration
-* Data Modeling
-* SQL
-* Analytics Engineering
-* Dashboard Development
-* Workflow Automation
+| Document | Description |
+|----------|-------------|
+| `SETUP.md` | Local installation and configuration |
+| `ARCHITECTURE.md` | Project architecture and design decisions |
+| `DATA_PIPELINE.md` | ETL pipeline explanation |
+| `DASHBOARD.md` | Dashboard features and visualizations |
 
 ---
 
 ## License
 
-This project is intended for educational and portfolio purposes.
+This project is licensed under the MIT License.
+
+See the `LICENSE` file for details.
