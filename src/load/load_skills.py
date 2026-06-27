@@ -10,4 +10,9 @@ def load_skills(df):
         if_exists="replace",
         index=False
     )
-    print(f"Loaded {len(df)} skills.")
+
+    print(
+        f"Loaded {len(df)} skills."
+    )
+
+    return len(df)

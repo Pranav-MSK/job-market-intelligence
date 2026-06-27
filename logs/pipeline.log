@@ -3,3 +3,35 @@
 2026-06-26 22:28:11,048 - INFO - Raw data saved to data/raw/jobs_20260626_222810.json
 2026-06-26 22:28:11,048 - INFO - Processed data saved to data\processed\latest_jobs.csv
 2026-06-26 22:28:11,048 - INFO - Pipeline completed
+2026-06-27 14:52:37,983 - INFO - Pipeline started
+2026-06-27 14:52:37,983 - INFO - Fetching jobs from Adzuna API
+2026-06-27 14:52:40,367 - INFO - Fetched 50 jobs
+2026-06-27 14:52:40,370 - INFO - Raw data saved to data/raw/jobs_20260627_145240.json
+2026-06-27 14:52:40,370 - INFO - Cleaning job data
+2026-06-27 14:52:40,440 - INFO - Processed 50 rows
+2026-06-27 14:52:40,440 - INFO - Running data quality checks
+2026-06-27 14:52:40,453 - INFO - Saving processed dataset
+2026-06-27 14:52:40,470 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-06-27 14:52:40,470 - INFO - Extracting skills
+2026-06-27 14:52:40,474 - INFO - Extracted 17 unique skills
+2026-06-27 14:52:40,474 - INFO - Saving skills CSV
+2026-06-27 14:52:40,477 - INFO - Loading jobs into MySQL
+2026-06-27 14:52:40,821 - INFO - Loading skills into MySQL
+2026-06-27 14:52:41,032 - INFO - Pipeline completed successfully
+2026-06-27 14:54:58,060 - INFO - Pipeline started
+2026-06-27 14:54:58,060 - INFO - Fetching jobs from Adzuna API
+2026-06-27 14:55:00,003 - INFO - Fetched 50 jobs
+2026-06-27 14:55:00,018 - INFO - Raw data saved to data/raw/jobs_20260627_145500.json
+2026-06-27 14:55:00,019 - INFO - Cleaning job data
+2026-06-27 14:55:00,059 - INFO - Processed 50 rows
+2026-06-27 14:55:00,059 - INFO - Running data quality checks
+2026-06-27 14:55:00,059 - INFO - Saving processed dataset
+2026-06-27 14:55:00,076 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-06-27 14:55:00,076 - INFO - Extracting skills
+2026-06-27 14:55:00,076 - INFO - Extracted 17 unique skills
+2026-06-27 14:55:00,076 - INFO - Saving skills CSV
+2026-06-27 14:55:00,076 - INFO - Loading jobs into MySQL
+2026-06-27 14:55:00,144 - INFO - Inserted 0 new jobs
+2026-06-27 14:55:00,144 - INFO - Loading skills into MySQL
+2026-06-27 14:55:00,234 - INFO - Loaded 17 skills
+2026-06-27 14:55:00,234 - INFO - Pipeline completed successfully

@@ -29,7 +29,7 @@ def load_jobs(df):
             "No new records found. "
             "Skipping load."
         )
-        return
+        return 0
 
     new_df.to_sql(
         name="jobs",
@@ -41,3 +41,5 @@ def load_jobs(df):
     print(
         f"Loaded {len(new_df)} new rows."
     )
+
+    return len(new_df)
