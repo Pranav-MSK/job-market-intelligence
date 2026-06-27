@@ -317,7 +317,14 @@ col4.metric(
 st.divider()
 
 st.caption(
-    "Data source: Adzuna API | "
-    "Updated via ETL pipeline | "
-    "Built with Streamlit"
+    """
+    <p style='text-align:center; font-size:14px;'>
+        Data source: Adzuna API | 
+        Updated via ETL pipeline | 
+        Built with Streamlit <br>
+        <a href="https://github.com/Pranav-MSK/job-market-intelligence" target="_blank" style="text-decoration:none; color:#1f77b4;">GitHub Repo</a> | 
+        <a href="https://www.linkedin.com/in/pranav-m-s-krishnan-25b5982a9" target="_blank" style="text-decoration:none; color:#1f77b4;">LinkedIn Profile</a>
+    </p>
+    """,
+    unsafe_allow_html=True
 )
