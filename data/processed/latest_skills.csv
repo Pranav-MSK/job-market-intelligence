@@ -1,16 +1,15 @@
 skill,total_jobs
-git,6
+git,7
 machine learning,3
 excel,3
 react,3
 python,3
+sql,2
 linux,2
 typescript,2
 java,2
-sql,2
-docker,1
 postgresql,1
-c++,1
+docker,1
 spring,1
 spark,1
 mysql,1
