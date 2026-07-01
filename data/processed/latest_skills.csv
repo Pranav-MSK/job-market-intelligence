@@ -1,19 +1,17 @@
 skill,total_jobs
 sql,5
-java,5
-c#,4
-aws,3
-python,3
+java,4
 typescript,3
-azure,2
+c#,3
 angular,2
-git,2
+azure,2
 react,2
+aws,2
+git,2
+python,2
 linux,2
+c++,2
 mysql,1
 spring,1
 deep learning,1
-c++,1
 machine learning,1
-excel,1
-javascript,1
