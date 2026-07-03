@@ -35,3 +35,75 @@
 2026-06-27 14:55:00,144 - INFO - Loading skills into MySQL
 2026-06-27 14:55:00,234 - INFO - Loaded 17 skills
 2026-06-27 14:55:00,234 - INFO - Pipeline completed successfully
+2026-07-03 14:13:04,756 - INFO - Pipeline started
+2026-07-03 14:13:04,756 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:13:08,429 - INFO - Fetched 50 jobs
+2026-07-03 14:13:08,432 - INFO - Raw data saved to data/raw/jobs_20260703_141308.json
+2026-07-03 14:13:08,432 - INFO - Cleaning job data
+2026-07-03 14:13:08,479 - INFO - Processed 50 rows
+2026-07-03 14:13:08,479 - INFO - Running data quality checks
+2026-07-03 14:13:08,491 - INFO - Saving processed dataset
+2026-07-03 14:13:08,530 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:13:08,530 - INFO - Extracting skills
+2026-07-03 14:13:08,533 - INFO - Extracted 17 unique skills
+2026-07-03 14:13:08,533 - INFO - Saving skills CSV
+2026-07-03 14:13:08,533 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:13:30,027 - INFO - Pipeline started
+2026-07-03 14:13:30,027 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:13:32,289 - INFO - Fetched 50 jobs
+2026-07-03 14:13:32,311 - INFO - Raw data saved to data/raw/jobs_20260703_141332.json
+2026-07-03 14:13:32,312 - INFO - Cleaning job data
+2026-07-03 14:13:32,367 - INFO - Processed 50 rows
+2026-07-03 14:13:32,367 - INFO - Running data quality checks
+2026-07-03 14:13:32,369 - INFO - Saving processed dataset
+2026-07-03 14:13:32,373 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:13:32,373 - INFO - Extracting skills
+2026-07-03 14:13:32,384 - INFO - Extracted 17 unique skills
+2026-07-03 14:13:32,384 - INFO - Saving skills CSV
+2026-07-03 14:13:32,384 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:15:20,139 - INFO - Pipeline started
+2026-07-03 14:15:20,139 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:15:23,093 - INFO - Fetched 50 jobs
+2026-07-03 14:15:23,109 - INFO - Raw data saved to data/raw/jobs_20260703_141523.json
+2026-07-03 14:15:23,111 - INFO - Cleaning job data
+2026-07-03 14:15:23,149 - INFO - Processed 29 rows
+2026-07-03 14:15:23,149 - INFO - Running data quality checks
+2026-07-03 14:15:23,152 - INFO - Saving processed dataset
+2026-07-03 14:15:23,155 - ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "d:\PRANAV\College\Projects\job-market-intelligence\main.py", line 75, in main
+    processed_path = save_processed(df)
+                     ^^^^^^^^^^^^^^^^^^
+  File "d:\PRANAV\College\Projects\job-market-intelligence\src\transform\save_processed.py", line 21, in save_processed
+    existing = pd.read_csv(
+               ^^^^^^^^^^^^
+  File "D:\PRANAV\College\Projects\job-market-intelligence\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PRANAV\College\Projects\job-market-intelligence\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PRANAV\College\Projects\job-market-intelligence\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PRANAV\College\Projects\job-market-intelligence\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1922, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\PRANAV\College\Projects\job-market-intelligence\venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 95, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/parsers.pyx", line 575, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+2026-07-03 14:16:50,263 - INFO - Pipeline started
+2026-07-03 14:16:50,263 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:16:52,894 - INFO - Fetched 50 jobs
+2026-07-03 14:16:52,905 - INFO - Raw data saved to data/raw/jobs_20260703_141652.json
+2026-07-03 14:16:52,905 - INFO - Cleaning job data
+2026-07-03 14:16:52,952 - INFO - Processed 29 rows
+2026-07-03 14:16:52,952 - INFO - Running data quality checks
+2026-07-03 14:16:52,955 - INFO - Saving processed dataset
+2026-07-03 14:16:52,965 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:16:52,966 - INFO - Extracting skills
+2026-07-03 14:16:52,972 - INFO - Extracted 15 unique skills
+2026-07-03 14:16:52,972 - INFO - Saving skills CSV
+2026-07-03 14:16:52,977 - INFO - USE_SQL=False. Skipping MySQL load.
