@@ -263,3 +263,29 @@ pandas.errors.EmptyDataError: No columns to parse from file
 2026-07-03 15:14:30,068 - INFO - Extracted 13 unique skills
 2026-07-03 15:14:30,068 - INFO - Saving skills CSV
 2026-07-03 15:14:30,068 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:23:12,388 - INFO - Pipeline started
+2026-07-03 15:23:12,388 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:23:14,933 - INFO - Fetched 50 jobs
+2026-07-03 15:23:14,945 - INFO - Raw data saved to data/raw/jobs_20260703_152314.json
+2026-07-03 15:23:14,945 - INFO - Cleaning job data
+2026-07-03 15:23:15,018 - INFO - Processed 39 rows
+2026-07-03 15:23:15,018 - INFO - Running data quality checks
+2026-07-03 15:23:15,018 - INFO - Saving processed dataset
+2026-07-03 15:23:15,055 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:23:15,055 - INFO - Extracting skills
+2026-07-03 15:23:15,083 - INFO - Extracted 20 unique skills
+2026-07-03 15:23:15,083 - INFO - Saving skills CSV
+2026-07-03 15:23:15,083 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:23:30,164 - INFO - Pipeline started
+2026-07-03 15:23:30,164 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:23:32,544 - INFO - Fetched 50 jobs
+2026-07-03 15:23:32,553 - INFO - Raw data saved to data/raw/jobs_20260703_152332.json
+2026-07-03 15:23:32,553 - INFO - Cleaning job data
+2026-07-03 15:23:32,593 - INFO - Processed 39 rows
+2026-07-03 15:23:32,593 - INFO - Running data quality checks
+2026-07-03 15:23:32,593 - INFO - Saving processed dataset
+2026-07-03 15:23:32,651 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:23:32,651 - INFO - Extracting skills
+2026-07-03 15:23:32,682 - INFO - Extracted 20 unique skills
+2026-07-03 15:23:32,682 - INFO - Saving skills CSV
+2026-07-03 15:23:32,682 - INFO - USE_SQL=False. Skipping MySQL load.

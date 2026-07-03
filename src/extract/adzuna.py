@@ -7,6 +7,7 @@ from src.config.settings import (
     JOB_QUERY,
     RESULTS_PER_PAGE,
     DEFAULT_PAGE,
+    MAX_DAYS_OLD,
 )
 
 BASE_URL = "https://api.adzuna.com/v1/api/jobs"
@@ -17,6 +18,7 @@ def fetch_jobs(
     query=JOB_QUERY,
     page=DEFAULT_PAGE,
     results_per_page=RESULTS_PER_PAGE,
+    max_days_old=MAX_DAYS_OLD,
 ):
     url = (
         f"{BASE_URL}/{country}/search/{page}"
@@ -24,7 +26,7 @@ def fetch_jobs(
         f"&app_key={ADZUNA_APP_KEY}"
         f"&what={query}"
         f"&results_per_page={results_per_page}"
-        f"&max_days_old=14"
+        f"&max_days_old={max_days_old}"
     )
 
     response = requests.get(url, timeout=30,)

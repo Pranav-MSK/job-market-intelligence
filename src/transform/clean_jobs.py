@@ -1,4 +1,3 @@
-import re
 import pandas as pd
 
 
@@ -7,8 +6,8 @@ VALID_TITLES = [
     "software developer",
     "developer",
     "backend",
-    "front end",
     "frontend",
+    "front end",
     "front-end",
     "full stack",
     "fullstack",
@@ -55,14 +54,11 @@ INVALID_TITLES = [
     "mechanical engineer",
     "electrical engineer",
     "chemical engineer",
-    "nurse",
     "doctor",
-    "receptionist",
-    "telecaller",
+    "nurse",
     "customer support",
     "customer service",
     "business development",
-    "hr",
     "human resources",
 ]
 
@@ -97,82 +93,132 @@ INDIAN_STATES = {
     "uttarakhand",
     "west bengal",
     "delhi",
-    "jammu and kashmir",
-    "ladakh",
     "chandigarh",
+    "ladakh",
+    "jammu and kashmir",
+    "andaman and nicobar islands",
     "dadra and nagar haveli",
     "daman and diu",
     "lakshadweep",
     "puducherry",
-    "andaman and nicobar islands",
 }
 
 
-def parse_location(location_str):
-
-    if not location_str:
-        return None, None, "India"
-
-    parts = [x.strip() for x in location_str.split(",")]
-
-    city = None
-    state = None
-    country = "India"
-
-    if len(parts) >= 3:
-        city = parts[0]
-        state = parts[1]
-        country = parts[-1]
-
-    elif len(parts) == 2:
-
-        first = parts[0].lower()
-        second = parts[1].lower()
-
-        if second == "india":
-            state = parts[0]
-            country = parts[1]
-
-        else:
-            city = parts[0]
-            state = parts[1]
-
-    elif len(parts) == 1:
-
-        first = parts[0].lower()
-
-        if first in INDIAN_STATES:
-            state = parts[0]
-        else:
-            country = parts[0]
-
-    if city and city.lower() in INDIAN_STATES:
-        state = city
-        city = None
-
-    return city, state, country
+MAJOR_CITIES = {
+    "bangalore",
+    "bengaluru",
+    "hyderabad",
+    "chennai",
+    "mumbai",
+    "pune",
+    "gurgaon",
+    "gurugram",
+    "noida",
+    "ghaziabad",
+    "delhi",
+    "new delhi",
+    "kolkata",
+    "ahmedabad",
+    "rajkot",
+    "lucknow",
+    "kochi",
+    "coimbatore",
+    "jaipur",
+    "indore",
+    "bhopal",
+    "mysore",
+    "surat",
+    "vadodara",
+    "visakhapatnam",
+    "nagpur",
+    "thane",
+    "navi mumbai",
+    "faridabad",
+    "sonipat",
+    "dehradun",
+    "trivandrum",
+}
 
 
 def keep_job(title):
 
     title = str(title).lower()
 
-    if any(word in title for word in INVALID_TITLES):
+    if any(x in title for x in INVALID_TITLES):
         return False
 
-    if any(word in title for word in VALID_TITLES):
+    if any(x in title for x in VALID_TITLES):
         return True
 
     return False
+
+
+def parse_location(location):
+
+    if not location:
+        return None, None, "India"
+
+    parts = [p.strip() for p in location.split(",") if p.strip()]
+
+    city = None
+    state = None
+    country = "India"
+
+    # remove country if present
+    if parts and parts[-1].lower() == "india":
+        parts = parts[:-1]
+
+    # find state
+    for p in parts:
+        if p.lower() in INDIAN_STATES:
+            state = p
+            break
+
+    # find city
+    for p in reversed(parts):
+
+        if p == state:
+            continue
+
+        if p.lower() in MAJOR_CITIES:
+            city = p
+            break
+
+    # locality, city
+    if city is None and len(parts) >= 2:
+
+        city = parts[-1]
+
+    # only one location token
+    if city is None and len(parts) == 1:
+
+        token = parts[0]
+
+        if token.lower() not in INDIAN_STATES:
+            city = token
+
+    if city == state:
+        city = None
+
+    return city, state, country
 
 
 def clean_jobs(raw_data):
 
     rows = []
 
+    seen = set()
+
     for job in raw_data["results"]:
 
-        title = job.get("title")
+        job_id = str(job.get("id"))
+
+        if job_id in seen:
+            continue
+
+        seen.add(job_id)
+
+        title = job.get("title", "")
 
         if not keep_job(title):
             continue
@@ -186,7 +232,7 @@ def clean_jobs(raw_data):
 
         rows.append(
             {
-                "source_job_id": job.get("id"),
+                "source_job_id": job_id,
                 "title": title,
                 "company": (
                     job.get("company", {})
@@ -205,11 +251,14 @@ def clean_jobs(raw_data):
 
     df = pd.DataFrame(rows)
 
+    if df.empty:
+        return df
+
     df = (
         df.sort_values("created_at")
         .drop_duplicates(
             subset="source_job_id",
-            keep="last"
+            keep="last",
         )
         .reset_index(drop=True)
     )
