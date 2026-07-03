@@ -1,40 +1,155 @@
 from pathlib import Path
+import hashlib
+
 import pandas as pd
+from pandas.errors import EmptyDataError
+
+
+def create_job_hash(df):
+    """
+    Create a stable fingerprint for every job.
+    Adzuna frequently changes job IDs, so we don't rely on them.
+    """
+
+    cols = (
+        df["title"].fillna("").str.lower().str.strip()
+        + "|"
+        + df["company"].fillna("").str.lower().str.strip()
+        + "|"
+        + df["city"].fillna("").str.lower().str.strip()
+        + "|"
+        + df["description"]
+        .fillna("")
+        .str[:500]                 # first 500 chars are enough
+        .str.lower()
+        .str.replace(r"\s+", " ", regex=True)
+        .str.strip()
+    )
+
+    return cols.apply(
+        lambda x: hashlib.md5(
+            x.encode("utf-8")
+        ).hexdigest()
+    )
 
 
 def save_processed(df):
 
-    processed_dir = Path("data/processed")
-
-    processed_dir.mkdir(
+    output_dir = Path("data/processed")
+    output_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    latest_file = (
-        processed_dir /
-        "latest_jobs.csv"
+    csv_path = output_dir / "latest_jobs.csv"
+
+    # ----------------------------------------
+    # Create fingerprint for incoming jobs
+    # ----------------------------------------
+    df = df.copy()
+
+    df["job_hash"] = create_job_hash(df)
+
+    # Remove duplicates within same crawl
+    df = (
+        df.sort_values("created_at")
+        .drop_duplicates(
+            subset="job_hash",
+            keep="last",
+        )
+        .reset_index(drop=True)
     )
 
-    if latest_file.exists():
+    print("\nIncoming")
+    print(len(df), "rows")
+
+    # ----------------------------------------
+    # First run
+    # ----------------------------------------
+    if not csv_path.exists():
+
+        df.to_csv(
+            csv_path,
+            index=False,
+        )
+
+        return csv_path
+
+    # ----------------------------------------
+    # Load existing data
+    # ----------------------------------------
+    try:
 
         existing = pd.read_csv(
-            latest_file
+            csv_path,
+            parse_dates=["created_at"],
         )
 
-        df = pd.concat(
-            [existing, df],
-            ignore_index=True,
-        )
+    except EmptyDataError:
 
-        df.drop_duplicates(
+        existing = pd.DataFrame(columns=df.columns)
+
+    if len(existing):
+
+        if "job_hash" not in existing.columns:
+
+            existing["job_hash"] = create_job_hash(
+                existing
+            )
+
+    print("Existing")
+    print(len(existing), "rows")
+
+    # ----------------------------------------
+    # Merge
+    # ----------------------------------------
+    combined = pd.concat(
+        [existing, df],
+        ignore_index=True,
+    )
+
+    print("Merged")
+    print(len(combined), "rows")
+
+    # ----------------------------------------
+    # Remove duplicates
+    # ----------------------------------------
+    combined = (
+        combined.sort_values("created_at")
+        .drop_duplicates(
+            subset="job_hash",
+            keep="last",
+        )
+        .reset_index(drop=True)
+    )
+
+    print("After dedup")
+    print(len(combined), "rows")
+
+    # ----------------------------------------
+    # Keep latest version if source_id repeats
+    # ----------------------------------------
+    combined = (
+        combined.sort_values("created_at")
+        .drop_duplicates(
             subset="source_job_id",
-            inplace=True,
+            keep="last",
         )
+        .reset_index(drop=True)
+    )
 
-    df.to_csv(
-        latest_file,
+    # ----------------------------------------
+    # Optional: remove helper column
+    # ----------------------------------------
+    combined.drop(
+        columns=["job_hash"],
+        inplace=True,
+        errors="ignore",
+    )
+
+    combined.to_csv(
+        csv_path,
         index=False,
     )
 
-    return latest_file
+    return csv_path

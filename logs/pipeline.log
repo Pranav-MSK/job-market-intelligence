@@ -107,3 +107,159 @@ pandas.errors.EmptyDataError: No columns to parse from file
 2026-07-03 14:16:52,972 - INFO - Extracted 15 unique skills
 2026-07-03 14:16:52,972 - INFO - Saving skills CSV
 2026-07-03 14:16:52,977 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:21:51,470 - INFO - Pipeline started
+2026-07-03 14:21:51,470 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:21:55,180 - INFO - Fetched 50 jobs
+2026-07-03 14:21:55,192 - INFO - Raw data saved to data/raw/jobs_20260703_142155.json
+2026-07-03 14:21:55,192 - INFO - Cleaning job data
+2026-07-03 14:21:55,253 - INFO - Processed 29 rows
+2026-07-03 14:21:55,253 - INFO - Running data quality checks
+2026-07-03 14:21:55,253 - INFO - Saving processed dataset
+2026-07-03 14:21:55,274 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:21:55,274 - INFO - Extracting skills
+2026-07-03 14:21:55,278 - INFO - Extracted 15 unique skills
+2026-07-03 14:21:55,278 - INFO - Saving skills CSV
+2026-07-03 14:21:55,282 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:24:48,161 - INFO - Pipeline started
+2026-07-03 14:24:48,161 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:24:51,001 - INFO - Fetched 50 jobs
+2026-07-03 14:24:51,018 - INFO - Raw data saved to data/raw/jobs_20260703_142451.json
+2026-07-03 14:24:51,020 - INFO - Cleaning job data
+2026-07-03 14:24:51,081 - INFO - Processed 29 rows
+2026-07-03 14:24:51,081 - INFO - Running data quality checks
+2026-07-03 14:24:51,087 - INFO - Saving processed dataset
+2026-07-03 14:24:51,121 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:24:51,121 - INFO - Extracting skills
+2026-07-03 14:24:51,126 - INFO - Extracted 15 unique skills
+2026-07-03 14:24:51,126 - INFO - Saving skills CSV
+2026-07-03 14:24:51,128 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:29:39,747 - INFO - Pipeline started
+2026-07-03 14:29:39,747 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:29:42,637 - INFO - Fetched 50 jobs
+2026-07-03 14:29:42,643 - INFO - Raw data saved to data/raw/jobs_20260703_142942.json
+2026-07-03 14:29:42,643 - INFO - Cleaning job data
+2026-07-03 14:29:42,692 - INFO - Processed 29 rows
+2026-07-03 14:29:42,692 - INFO - Running data quality checks
+2026-07-03 14:29:42,692 - INFO - Saving processed dataset
+2026-07-03 14:29:42,719 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:29:42,719 - INFO - Extracting skills
+2026-07-03 14:29:42,725 - INFO - Extracted 15 unique skills
+2026-07-03 14:29:42,725 - INFO - Saving skills CSV
+2026-07-03 14:29:42,726 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:53:31,601 - INFO - Pipeline started
+2026-07-03 14:53:31,601 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:53:35,222 - INFO - Fetched 50 jobs
+2026-07-03 14:53:35,235 - INFO - Raw data saved to data/raw/jobs_20260703_145335.json
+2026-07-03 14:53:35,235 - INFO - Cleaning job data
+2026-07-03 14:53:35,355 - INFO - Processed 29 rows
+2026-07-03 14:53:35,355 - INFO - Running data quality checks
+2026-07-03 14:53:35,360 - INFO - Saving processed dataset
+2026-07-03 14:53:35,409 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:53:35,409 - INFO - Extracting skills
+2026-07-03 14:53:35,418 - INFO - Extracted 15 unique skills
+2026-07-03 14:53:35,418 - INFO - Saving skills CSV
+2026-07-03 14:53:35,420 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 14:54:06,882 - INFO - Pipeline started
+2026-07-03 14:54:06,882 - INFO - Fetching jobs from Adzuna API
+2026-07-03 14:54:09,628 - INFO - Fetched 50 jobs
+2026-07-03 14:54:09,638 - INFO - Raw data saved to data/raw/jobs_20260703_145409.json
+2026-07-03 14:54:09,638 - INFO - Cleaning job data
+2026-07-03 14:54:09,679 - INFO - Processed 29 rows
+2026-07-03 14:54:09,679 - INFO - Running data quality checks
+2026-07-03 14:54:09,679 - INFO - Saving processed dataset
+2026-07-03 14:54:09,709 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 14:54:09,709 - INFO - Extracting skills
+2026-07-03 14:54:09,716 - INFO - Extracted 15 unique skills
+2026-07-03 14:54:09,716 - INFO - Saving skills CSV
+2026-07-03 14:54:09,718 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:00:12,912 - INFO - Pipeline started
+2026-07-03 15:00:12,918 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:00:19,529 - INFO - Fetched 50 jobs
+2026-07-03 15:00:19,532 - INFO - Raw data saved to data/raw/jobs_20260703_150019.json
+2026-07-03 15:00:19,532 - INFO - Cleaning job data
+2026-07-03 15:00:19,555 - INFO - Processed 29 rows
+2026-07-03 15:00:19,555 - INFO - Running data quality checks
+2026-07-03 15:00:19,559 - INFO - Saving processed dataset
+2026-07-03 15:00:19,589 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:00:19,589 - INFO - Extracting skills
+2026-07-03 15:00:19,591 - INFO - Extracted 15 unique skills
+2026-07-03 15:00:19,591 - INFO - Saving skills CSV
+2026-07-03 15:00:19,593 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:05:28,562 - INFO - Pipeline started
+2026-07-03 15:05:28,562 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:05:31,307 - INFO - Fetched 50 jobs
+2026-07-03 15:05:31,328 - INFO - Raw data saved to data/raw/jobs_20260703_150531.json
+2026-07-03 15:05:31,330 - INFO - Cleaning job data
+2026-07-03 15:05:31,404 - INFO - Processed 38 rows
+2026-07-03 15:05:31,404 - INFO - Running data quality checks
+2026-07-03 15:05:31,404 - INFO - Saving processed dataset
+2026-07-03 15:05:31,437 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:05:31,439 - INFO - Extracting skills
+2026-07-03 15:05:31,441 - INFO - Extracted 13 unique skills
+2026-07-03 15:05:31,441 - INFO - Saving skills CSV
+2026-07-03 15:05:31,441 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:06:04,887 - INFO - Pipeline started
+2026-07-03 15:06:04,887 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:06:08,174 - INFO - Fetched 50 jobs
+2026-07-03 15:06:08,193 - INFO - Raw data saved to data/raw/jobs_20260703_150608.json
+2026-07-03 15:06:08,193 - INFO - Cleaning job data
+2026-07-03 15:06:08,237 - INFO - Processed 38 rows
+2026-07-03 15:06:08,237 - INFO - Running data quality checks
+2026-07-03 15:06:08,237 - INFO - Saving processed dataset
+2026-07-03 15:06:08,273 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:06:08,273 - INFO - Extracting skills
+2026-07-03 15:06:08,278 - INFO - Extracted 13 unique skills
+2026-07-03 15:06:08,278 - INFO - Saving skills CSV
+2026-07-03 15:06:08,278 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:06:35,622 - INFO - Pipeline started
+2026-07-03 15:06:35,622 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:06:38,585 - INFO - Fetched 50 jobs
+2026-07-03 15:06:38,591 - INFO - Raw data saved to data/raw/jobs_20260703_150638.json
+2026-07-03 15:06:38,591 - INFO - Cleaning job data
+2026-07-03 15:06:38,617 - INFO - Processed 38 rows
+2026-07-03 15:06:38,617 - INFO - Running data quality checks
+2026-07-03 15:06:38,617 - INFO - Saving processed dataset
+2026-07-03 15:06:38,634 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:06:38,634 - INFO - Extracting skills
+2026-07-03 15:06:38,637 - INFO - Extracted 13 unique skills
+2026-07-03 15:06:38,637 - INFO - Saving skills CSV
+2026-07-03 15:06:38,641 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:07:24,426 - INFO - Pipeline started
+2026-07-03 15:07:24,426 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:07:26,920 - INFO - Fetched 50 jobs
+2026-07-03 15:07:26,924 - INFO - Raw data saved to data/raw/jobs_20260703_150726.json
+2026-07-03 15:07:26,924 - INFO - Cleaning job data
+2026-07-03 15:07:26,959 - INFO - Processed 38 rows
+2026-07-03 15:07:26,961 - INFO - Running data quality checks
+2026-07-03 15:07:26,963 - INFO - Saving processed dataset
+2026-07-03 15:07:26,983 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:07:26,983 - INFO - Extracting skills
+2026-07-03 15:07:26,987 - INFO - Extracted 13 unique skills
+2026-07-03 15:07:26,987 - INFO - Saving skills CSV
+2026-07-03 15:07:26,987 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:14:06,363 - INFO - Pipeline started
+2026-07-03 15:14:06,363 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:14:08,895 - INFO - Fetched 50 jobs
+2026-07-03 15:14:08,915 - INFO - Raw data saved to data/raw/jobs_20260703_151408.json
+2026-07-03 15:14:08,916 - INFO - Cleaning job data
+2026-07-03 15:14:08,992 - INFO - Processed 38 rows
+2026-07-03 15:14:08,992 - INFO - Running data quality checks
+2026-07-03 15:14:08,994 - INFO - Saving processed dataset
+2026-07-03 15:14:09,028 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:14:09,028 - INFO - Extracting skills
+2026-07-03 15:14:09,035 - INFO - Extracted 13 unique skills
+2026-07-03 15:14:09,035 - INFO - Saving skills CSV
+2026-07-03 15:14:09,037 - INFO - USE_SQL=False. Skipping MySQL load.
+2026-07-03 15:14:27,701 - INFO - Pipeline started
+2026-07-03 15:14:27,702 - INFO - Fetching jobs from Adzuna API
+2026-07-03 15:14:29,971 - INFO - Fetched 50 jobs
+2026-07-03 15:14:29,992 - INFO - Raw data saved to data/raw/jobs_20260703_151429.json
+2026-07-03 15:14:29,994 - INFO - Cleaning job data
+2026-07-03 15:14:30,035 - INFO - Processed 38 rows
+2026-07-03 15:14:30,035 - INFO - Running data quality checks
+2026-07-03 15:14:30,037 - INFO - Saving processed dataset
+2026-07-03 15:14:30,065 - INFO - Processed dataset saved to data\processed\latest_jobs.csv
+2026-07-03 15:14:30,065 - INFO - Extracting skills
+2026-07-03 15:14:30,068 - INFO - Extracted 13 unique skills
+2026-07-03 15:14:30,068 - INFO - Saving skills CSV
+2026-07-03 15:14:30,068 - INFO - USE_SQL=False. Skipping MySQL load.

@@ -205,4 +205,13 @@ def clean_jobs(raw_data):
 
     df = pd.DataFrame(rows)
 
+    df = (
+        df.sort_values("created_at")
+        .drop_duplicates(
+            subset="source_job_id",
+            keep="last"
+        )
+        .reset_index(drop=True)
+    )
+
     return df

@@ -34,6 +34,12 @@ def main():
 
         data = fetch_jobs()
 
+        ids = [job["id"] for job in data["results"]]
+
+        print("Total:", len(ids))
+        print("Unique:", len(set(ids)))
+        print(ids)
+
         logging.info(
             "Fetched %d jobs",
             len(data["results"])
@@ -59,6 +65,11 @@ def main():
 
         print(
             f"Columns: {', '.join(df.columns)}"
+        )
+
+        print(
+            "Duplicate IDs:",
+            df["source_job_id"].duplicated().sum()
         )
 
         logging.info(
