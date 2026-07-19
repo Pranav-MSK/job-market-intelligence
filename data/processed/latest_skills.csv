@@ -1,8 +1,18 @@
 skill,total_jobs
-AWS,2
-Java,1
+Python,3
+Azure,2
+Java,2
+C,2
+.NET,2
+CI/CD,1
+HTML,1
+Node.js,1
 Excel,1
+LLM,1
+Django,1
+React,1
 SQL,1
-Python,1
-.NET,1
-Machine Learning,1
+TypeScript,1
+C#,1
+JavaScript,1
+PHP,1
