@@ -1,11 +1,9 @@
 skill,total_jobs
-Linux,6
-C,5
-C++,4
-CI/CD,4
-Java,2
-Git,2
+C,3
+LLM,2
+Git,1
+C++,1
+Linux,1
+CI/CD,1
 Ruby,1
-Docker,1
-Azure,1
 Python,1
