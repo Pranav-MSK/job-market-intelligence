@@ -1,9 +1,8 @@
 skill,total_jobs
-C,3
-LLM,2
-Git,1
-C++,1
-Linux,1
-CI/CD,1
 Ruby,1
-Python,1
+LLM,1
+C++,1
+C,1
+Swift,1
+CI/CD,1
+Go,1
