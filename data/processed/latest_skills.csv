@@ -1,8 +1,21 @@
 skill,total_jobs
-Ruby,1
-LLM,1
-C++,1
-C,1
-Swift,1
-CI/CD,1
+C,5
+Angular,4
+Python,4
+C#,3
+Kubernetes,3
+.NET,3
+Java,3
+C++,2
+CI/CD,2
+GitHub,2
+Machine Learning,2
+ASP.NET,1
+AWS,1
+JavaScript,1
+SQL,1
+Linux,1
+Spring Boot,1
+Docker,1
 Go,1
+React,1
