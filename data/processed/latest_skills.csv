@@ -1,20 +1,4 @@
 skill,total_jobs
-Go,5
-Java,5
-C,4
-Python,3
-CI/CD,3
-C#,3
-Angular,3
-Spring Boot,3
-.NET,2
-Ruby,2
-C++,2
-Docker,2
-Kubernetes,2
-React,2
-PHP,1
-JavaScript,1
-Azure,1
-GitHub,1
-Redis,1
+Java,3
+CI/CD,1
+Machine Learning,1
